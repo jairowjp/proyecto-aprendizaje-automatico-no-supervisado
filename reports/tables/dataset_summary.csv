@@ -1,0 +1,8 @@
+dataset,rows,columns,memory_mb
+events,760958,10,156.19
+sessions,120000,6,28.1
+order_items,59163,5,2.26
+orders,33580,10,10.34
+customers,20000,7,4.96
+reviews,10780,6,1.8
+products,1197,6,0.18
