@@ -1,48 +1,27 @@
-# Proyecto 3 — Clustering y Reducción de Dimensionalidad sobre Comportamiento de Clientes
+# Segmentación de Clientes con Aprendizaje No Supervisado
 
-## Integrantes
+Proyecto de clustering aplicado a datos de clientes de e-commerce con 7 fuentes de datos (customers, sessions, events, orders, order_items, products, reviews). Se aplican técnicas de aprendizaje no supervisado — K-Means, DBSCAN, t-SNE y PCA — para identificar perfiles de comportamiento de compra.
 
-| Nombre | Rol |
-|--------|-----|
-| Daniel Fernando Salgado Santamaria | Investigador |
-| Jairo Wladimir Jhayya Perlaza | Investigador |
-| Luis Gabriel Salgado Santamaria | Investigador |
-| Oscar Paul Naranjo Castro | Investigador |
+## Tecnologías
 
-**Fecha:** Mayo 2026  
-**Materia:** Aprendizaje Automático / Machine Learning  
+- Python 3.11
+- Jupyter Notebook
+- scikit-learn, pandas, numpy
+- matplotlib, seaborn, plotly
+- nbconvert (reportes HTML/PDF)
+- LaTeX / xelatex (exportación PDF)
 
----
+## Instalación
 
-## Descripción del Proyecto
+```bash
+git clone https://github.com/jairowjp/proyecto-aprendizaje-automatico-no-supervisado.git
+cd proyecto3
 
-Este proyecto aplica técnicas de **aprendizaje no supervisado** sobre un dataset de comportamiento de clientes de una plataforma de e-commerce. El objetivo es identificar perfiles de cliente mediante algoritmos de clustering (K-Means y DBSCAN), y visualizar la estructura de los datos en espacios reducidos utilizando t-SNE y PCA.
+python -m venv .venv
+.venv\Scripts\activate
 
-### Pregunta central
-
-> ¿Es posible identificar perfiles de clientes diferenciados a partir de su comportamiento de navegación, compra y retroalimentación?
-
----
-
-## Dataset
-
-| Atributo | Detalle |
-|----------|---------|
-| **Fuente** | Kaggle (repositorio público) |
-| **Archivos** | 7 archivos CSV independientes |
-| **Tamaño total** | ~10 millones de registros en todas las tablas |
-
-### Archivos fuente (`data/raw/`)
-
-| Archivo | Registros | Columnas | Descripción |
-|---------|-----------|----------|-------------|
-| `customers.csv` | 20,000 | 7 | Datos demográficos de clientes (edad, país, fecha de registro) |
-| `sessions.csv` | 120,000 | 6 | Sesiones de navegación por cliente y dispositivo |
-| `events.csv` | 760,958 | 10 | Eventos de interacción dentro de cada sesión |
-| `orders.csv` | 33,580 | 10 | Órdenes de compra (método de pago, descuento, total) |
-| `order_items.csv` | 59,163 | 5 | Detalle de productos por orden |
-| `products.csv` | 1,197 | 6 | Catálogo de productos con categoría y precio |
-| `reviews.csv` | 10,780 | 6 | Reseñas de clientes con rating y texto |
+pip install -r requirements.txt
+```
 
 ## Estructura del Repositorio
 
@@ -67,124 +46,65 @@ proyecto3/
 │   ├── 04-jj-dbscan-tsne-clientes.ipynb
 │   └── 05-jj-pca-clientes.ipynb
 ├── reports/
+│   ├── 01-jj-entorno-y-carga.html
+│   ├── 01-jj-entorno-y-carga.pdf
+│   ├── 02-jj-eda-clientes.html
+│   ├── 02-jj-eda-clientes.pdf
+│   ├── 03-jj-clustering-clientes.html
+│   ├── 03-jj-clustering-clientes.pdf
+│   ├── 04-jj-dbscan-tsne-clientes.html
+│   ├── 04-jj-dbscan-tsne-clientes.pdf
+│   ├── 05-jj-pca-clientes.html
+│   ├── 05-jj-pca-clientes.pdf
 │   ├── figures/
 │   │   ├── eda_clientes/
 │   │   ├── clustering_clientes/
+│   │   │   ├── comparacion_distribucion_kmeans_dbscan.png
+│   │   │   ├── comparacion_pca_tsne_kmeans.png
+│   │   │   └── comparacion_silhouette_kmeans_dbscan.png
 │   │   ├── dbscan/
-│   │   └── pca/
+│   │   │   ├── kdistance_graph_dbscan.png
+│   │   │   ├── perfil_promedio_clusters_dbscan.png
+│   │   │   └── tamano_clusters_dbscan.png
+│   │   ├── pca/
+│   │   │   ├── pca_biplot.png
+│   │   │   ├── pca_clusters_dbscan.png
+│   │   │   ├── pca_clusters_kmeans.png
+│   │   │   └── pca_scree_plot.png
+│   │   └── tsne/
+│   │       └── tsne_clusters_dbscan.png
 │   └── tables/
+│       ├── comparacion_kmeans_dbscan.csv
+│       ├── comparacion_silhouette_pca_tsne.csv
+│       └── pca_loadings.csv
 ├── .venv/
 ├── requirements.txt
 └── README.md
 ```
 
-## Instalación del Entorno
+## Notebooks
 
-```powershell
-# 1. Clonar el repositorio
-git clone <url-del-repositorio>
-cd proyecto3
-
-# 2. Crear entorno virtual
-python -m venv .venv
-
-# 3. Activar entorno virtual (Windows)
-.venv\Scripts\activate
-
-# 4. Instalar dependencias
-pip install -r requirements.txt
-```
-
-### Dependencias principales
-
-```txt
-pandas>=2.0
-numpy>=1.24
-matplotlib>=3.7
-seaborn>=0.12
-scikit-learn>=1.3
-jupyterlab>=4.0
-```
-
----
-
-## Pipeline de Ejecución
-
-Los notebooks deben ejecutarse en orden:
-
-| Notebook | Propósito | Outputs |
-|----------|-----------|---------|
-| `01` | Verificación del entorno, carga de CSVs | `tables/dataset_summary.csv` |
-| `02` | EDA, feature engineering, `customer_features` | `processed/customer_features.csv`, figuras EDA |
-| `03` | K-Means, selección de k óptimo | Elbow, silhouette, perfiles |
-| `04` | DBSCAN + t-SNE | Grids de búsqueda, clusters DBSCAN, t-SNE 2D |
-| `05` | PCA + comparación con t-SNE | Scree plot, biplot, loadings |
-
----
-
-## Variables del Dataset Consolidado
-
-| Variable | Descripción |
+| Notebook | Descripción |
 |----------|-------------|
-| `customer_id` | Identificador único del cliente |
-| `age` | Edad del cliente (18–75 años) |
-| `n_sessions` | Número total de sesiones |
-| `n_orders` | Número total de órdenes |
-| `gross_revenue_usd` | Ingresos brutos generados (USD) |
-| `avg_order_value_usd` | Ticket promedio por orden (USD) |
-| `n_reviews` | Número de reseñas escritas |
+| 01-jj-entorno-y-carga | Configuración del entorno, carga y validación de los 7 datasets |
+| 02-jj-eda-clientes | Análisis exploratorio: distribuciones, correlaciones y feature engineering |
+| 03-jj-clustering-clientes | Segmentación con K-Means, método del codo y análisis Silhouette |
+| 04-jj-dbscan-tsne-clientes | Clustering con DBSCAN, gráfico k-distancia y visualización t-SNE |
+| 05-jj-pca-clientes | Reducción dimensional con PCA, biplot y proyección de clusters |
 
----
+## Resultados
 
-## Modelos Implementados
+- **K-Means** identificó 4 segmentos diferenciados de clientes basados en comportamiento de compra y navegación
+- **DBSCAN** detectó clientes atípicos (ruido) no capturados por K-Means, con clusters de densidad variable
+- **t-SNE** confirmó visualmente la separación entre clusters en espacio bidimensional
+- **PCA** redujo la dimensionalidad del dataset preservando la estructura principal de varianza
+- Se generaron tablas comparativas de Silhouette entre K-Means y DBSCAN, y loadings de componentes principales
 
-### K-Means
-- Selección de k con método del codo + Silhouette Score → **k=2 óptimo**
-- Preprocesamiento: StandardScaler
+## Autores
 
-### DBSCAN
-- Parámetros óptimos: `eps=1.11`, `min_samples=5`
-- Clasifica outliers como ruido (clase -1)
-
-### PCA
-- 2 componentes para visualización 2D
-- Análisis de loadings e interpretación de ejes
-
-### t-SNE
-- `perplexity=40`, `max_iter=1000`, `init='pca'`
-- Preserva vecindad local para visualización cualitativa
-
----
-
-## Resultados Principales
-
-### Perfiles identificados (K-Means, k=2)
-
-| Cluster | Perfil | Características |
-|---------|--------|-----------------|
-| Cluster 0 | Cliente ocasional | Baja frecuencia, ticket bajo, pocas reseñas |
-| Cluster 1 | Cliente activo | Alta frecuencia, mayores ingresos, más reseñas |
-
-### K-Means vs DBSCAN
-
-| Dimensión | K-Means | DBSCAN |
-|-----------|---------|--------|
-| Tipo | Partición (centroide) | Densidad |
-| Detecta outliers | No | Sí (clase -1) |
-| Forma de clusters | Esférica | Arbitraria |
-| Requiere k | Sí | No |
-
----
-
-## Exportación a PDF
-
-```powershell
-jupyter nbconvert --to pdf --no-prompt --output-dir reports notebooks/<nombre>.ipynb
-```
-
----
-
-## Licencia
-
-Proyecto académico — uso educativo exclusivo.
-
+| Nombre | GitHub |
+|--------|--------|
+| Daniel Fernando Salgado Santamaría | — |
+| Jairo Wladimir Jhayya Perlaza | [@jairowjp](https://github.com/jairowjp) |
+| Luis Gabriel Salgado Santamaría | — |
+| Óscar Paul Naranjo Castro | — |
