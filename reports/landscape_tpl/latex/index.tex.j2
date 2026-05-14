@@ -1,0 +1,8 @@
+@"
+((*- extends 'article/index.tex.j2' -*))
+
+((* block docclass *))
+\documentclass[landscape,a4paper,10pt]{article}
+\usepackage[landscape,a4paper,margin=1.5cm]{geometry}
+((* endblock docclass *))
+"@ | Out-File -FilePath "reports/landscape_tpl/latex/index.tex.j2" -Encoding utf8

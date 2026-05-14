@@ -1,0 +1,3 @@
+Modelo,N° Clusters,Puntos de Ruido,Silhouette Score,Detecta formas arbitrarias,Sensible a outliers
+K-Means,2,0 (0.0%),0.2994,No,Sí
+DBSCAN,5,266 (1.3%),0.4491,Sí,No (clasifica como ruido)

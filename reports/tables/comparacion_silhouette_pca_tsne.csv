@@ -1,0 +1,7 @@
+Modelo,Espacio,Silhouette Score
+K-Means,Original (6D),0.2994
+K-Means,PCA (2D),0.4503
+K-Means,t-SNE (2D),0.2180
+DBSCAN,Original (6D),0.4491
+DBSCAN,PCA (2D),0.4462
+DBSCAN,t-SNE (2D),-0.4075
