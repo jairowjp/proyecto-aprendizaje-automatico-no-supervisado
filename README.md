@@ -1,6 +1,10 @@
 # Segmentación de Clientes con Aprendizaje No Supervisado
 
-Proyecto de clustering aplicado a datos de clientes de e-commerce con 7 fuentes de datos (customers, sessions, events, orders, order_items, products, reviews). Se aplican técnicas de aprendizaje no supervisado — K-Means, DBSCAN, t-SNE y PCA — para identificar perfiles de comportamiento de compra.
+Proyecto de clustering aplicado a datos de clientes de e-commerce con 7 fuentes de datos (customers, sessions, events, orders, order_items, products, reviews). Se aplican técnicas de aprendizaje no supervisado — K-Means, DBSCAN, t-SNE y PCA — para identificar perfiles de comportamiento de compra sobre una base de **20,000 clientes**.
+
+## Justificación
+
+La segmentación de clientes es una necesidad estratégica en negocios de e-commerce: permite identificar grupos con comportamientos de compra similares y diseñar estrategias diferenciadas de marketing, retención y activación. Los métodos supervisados requieren etiquetas previas que en este contexto no existen, por lo que el aprendizaje no supervisado es la alternativa natural. Se aplican K-Means y DBSCAN como algoritmos de clustering complementarios — el primero para segmentación compacta y el segundo para detección de outliers — y se complementan con PCA y t-SNE para reducción dimensional y validación visual de los resultados.
 
 ## Tecnologías
 
@@ -92,13 +96,26 @@ proyecto3/
 | 04-jj-dbscan-tsne-clientes | Clustering con DBSCAN, gráfico k-distancia y visualización t-SNE |
 | 05-jj-pca-clientes | Reducción dimensional con PCA, biplot y proyección de clusters |
 
-## Resultados
+## Análisis de Resultados
 
-- **K-Means** identificó 4 segmentos diferenciados de clientes basados en comportamiento de compra y navegación
-- **DBSCAN** detectó clientes atípicos (ruido) no capturados por K-Means, con clusters de densidad variable
-- **t-SNE** confirmó visualmente la separación entre clusters en espacio bidimensional
-- **PCA** redujo la dimensionalidad del dataset preservando la estructura principal de varianza
-- Se generaron tablas comparativas de Silhouette entre K-Means y DBSCAN, y loadings de componentes principales
+### K-Means
+
+El método del codo y el Silhouette Score indican que **k=2** es el número óptimo de clusters (Silhouette: **0.30**). Los dos segmentos identificados son:
+
+- **Cluster 0 — Clientes de alto valor** (35% de la base): mayor número de sesiones (media: 7.65), más órdenes (media: 2.86), ingreso total elevado (media: USD 476.67), ticket promedio alto (media: USD 193.40) y mayor número de reseñas (media: 1.21).
+- **Cluster 1 — Clientes de menor valor** (65% de la base): menor frecuencia de sesiones (media: 5.10), pocas órdenes (media: 1.04), ingreso total reducido (media: USD 87.74), ticket promedio bajo (media: USD 63.35) y reseñas casi inexistentes (media: 0.18).
+
+### DBSCAN
+
+DBSCAN detectó clientes atípicos (ruido) no capturados por K-Means y generó clusters de densidad variable. La separación entre grupos es coherente con la estructura observada en K-Means, confirmando la robustez de la segmentación.
+
+### PCA
+
+Los dos primeros componentes principales explican el **60.76%** de la varianza total (PC1: 43.22%, PC2: 17.53%). Las variables de mayor contribución en PC1 son `gross_revenue_usd` (0.56), `n_orders` (0.51) y `avg_order_value_usd` (0.42), interpretándose como una **dimensión de valor económico y volumen de compras**. PC2 contrasta `avg_order_value_usd` (0.65) con `n_sessions` (−0.52), capturando el **contraste entre ticket alto y frecuencia de visitas**. La proyección de clusters en el plano PCA confirma la separación visual entre perfiles de cliente.
+
+### t-SNE
+
+La visualización t-SNE confirmó la separación entre clusters en espacio bidimensional, validando que las diferencias entre segmentos son estructurales y no un artefacto del algoritmo.
 
 ## Autores
 
