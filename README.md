@@ -44,41 +44,39 @@ Este proyecto aplica técnicas de **aprendizaje no supervisado** sobre un datase
 | `products.csv` | 1,197 | 6 | Catálogo de productos con categoría y precio |
 | `reviews.csv` | 10,780 | 6 | Reseñas de clientes con rating y texto |
 
----
-
 ## Estructura del Repositorio
+
+```text
 proyecto3/
 ├── data/
-│ ├── raw/ # Archivos CSV originales (no modificar)
-│ │ ├── customers.csv
-│ │ ├── sessions.csv
-│ │ ├── events.csv
-│ │ ├── orders.csv
-│ │ ├── order_items.csv
-│ │ ├── products.csv
-│ │ └── reviews.csv
-│ ├── interim/ # Datos intermedios del procesamiento
-│ └── processed/ # Datos listos para modelado
-│ └── customer_features.csv
+│   ├── raw/                        # Archivos CSV originales (no modificar)
+│   │   ├── customers.csv
+│   │   ├── sessions.csv
+│   │   ├── events.csv
+│   │   ├── orders.csv
+│   │   ├── order_items.csv
+│   │   ├── products.csv
+│   │   └── reviews.csv
+│   ├── interim/                    # Datos intermedios del procesamiento
+│   └── processed/                  # Datos listos para modelado
+│       └── customer_features.csv
 ├── notebooks/
-│ ├── 01-jj-entorno-y-carga.ipynb
-│ ├── 02-jj-eda-clientes.ipynb
-│ ├── 03-jj-clustering-clientes.ipynb
-│ ├── 04-jj-dbscan-tsne-clientes.ipynb
-│ └── 05-jj-pca-clientes.ipynb
+│   ├── 01-jj-entorno-y-carga.ipynb
+│   ├── 02-jj-eda-clientes.ipynb
+│   ├── 03-jj-clustering-clientes.ipynb
+│   ├── 04-jj-dbscan-tsne-clientes.ipynb
+│   └── 05-jj-pca-clientes.ipynb
 ├── reports/
-│ ├── figures/
-│ │ ├── eda_clientes/
-│ │ ├── clustering_clientes/
-│ │ ├── dbscan/
-│ │ └── pca/
-│ └── tables/
+│   ├── figures/
+│   │   ├── eda_clientes/
+│   │   ├── clustering_clientes/
+│   │   ├── dbscan/
+│   │   └── pca/
+│   └── tables/
 ├── .venv/
 ├── requirements.txt
 └── README.md
-
-
----
+```
 
 ## Instalación del Entorno
 
