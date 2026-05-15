@@ -27,28 +27,35 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## Estructura del Repositorio
+## Estructura del proyecto
 
 ```text
 proyecto3/
+├── .gitignore
+├── README.md
+├── requirements.txt
 ├── data/
-│   ├── raw/                        # Archivos CSV originales (no modificar)
-│   │   ├── customers.csv
-│   │   ├── sessions.csv
-│   │   ├── events.csv
-│   │   ├── orders.csv
-│   │   ├── order_items.csv
-│   │   ├── products.csv
-│   │   └── reviews.csv
-│   ├── interim/                    # Datos intermedios del procesamiento
-│   └── processed/                  # Datos listos para modelado
-│       └── customer_features.csv
+│   ├── interim/
+│   ├── processed/
+│   │   ├── customer_clusters_kmeans.csv
+│   │   └── customer_features.csv
+│   └── raw/
+│       ├── customers.csv
+│       ├── events.csv
+│       ├── orders.csv
+│       ├── order_items.csv
+│       ├── products.csv
+│       ├── reviews.csv
+│       └── sessions.csv
 ├── notebooks/
 │   ├── 01-jj-entorno-y-carga.ipynb
 │   ├── 02-jj-eda-clientes.ipynb
 │   ├── 03-jj-clustering-clientes.ipynb
 │   ├── 04-jj-dbscan-tsne-clientes.ipynb
-│   └── 05-jj-pca-clientes.ipynb
+│   ├── 05-jj-pca-clientes.ipynb
+│   └── .ipynb_checkpoints/
+│       └── 01-jj-entorno-y-carga-checkpoint.ipynb
+├── references/
 ├── reports/
 │   ├── 01-jj-entorno-y-carga.html
 │   ├── 01-jj-entorno-y-carga.pdf
@@ -60,16 +67,36 @@ proyecto3/
 │   ├── 04-jj-dbscan-tsne-clientes.pdf
 │   ├── 05-jj-pca-clientes.html
 │   ├── 05-jj-pca-clientes.pdf
+│   ├── landscape.tplx
 │   ├── figures/
-│   │   ├── eda_clientes/
 │   │   ├── clustering_clientes/
 │   │   │   ├── comparacion_distribucion_kmeans_dbscan.png
 │   │   │   ├── comparacion_pca_tsne_kmeans.png
-│   │   │   └── comparacion_silhouette_kmeans_dbscan.png
+│   │   │   ├── comparacion_silhouette_kmeans_dbscan.png
+│   │   │   ├── metodo_codo_kmeans.png
+│   │   │   ├── pca_clusters_2d.png
+│   │   │   ├── pca_loadings_pc1_pc2.png
+│   │   │   ├── pca_varianza_explicada.png
+│   │   │   ├── perfil_promedio_clusters.png
+│   │   │   ├── scatter_clusters_ordenes_ingreso.png
+│   │   │   ├── scatter_clusters_sesiones_resenas.png
+│   │   │   ├── silhouette_score_kmeans.png
+│   │   │   └── tamano_clusters.png
 │   │   ├── dbscan/
 │   │   │   ├── kdistance_graph_dbscan.png
 │   │   │   ├── perfil_promedio_clusters_dbscan.png
 │   │   │   └── tamano_clusters_dbscan.png
+│   │   ├── eda/
+│   │   ├── eda_clientes/
+│   │   │   ├── altas_clientes_por_mes.png
+│   │   │   ├── distribucion_edad_clientes.png
+│   │   │   ├── distribucion_gasto_total_cliente.png
+│   │   │   ├── distribucion_sesiones_y_ordenes.png
+│   │   │   ├── distribucion_ticket_promedio.png
+│   │   │   ├── matriz_correlacion_clientes.png
+│   │   │   ├── proporcion_marketing_opt_in.png
+│   │   │   └── top_10_paises_clientes.png
+│   │   ├── kmeans/
 │   │   ├── pca/
 │   │   │   ├── pca_biplot.png
 │   │   │   ├── pca_clusters_dbscan.png
@@ -77,13 +104,31 @@ proyecto3/
 │   │   │   └── pca_scree_plot.png
 │   │   └── tsne/
 │   │       └── tsne_clusters_dbscan.png
+│   ├── landscape_tpl/
+│   │   ├── conf.json
+│   │   └── latex/
+│   │       └── index.tex.j2
+│   ├── presentations/
+│   │   └── presentacion-dbscan.html
 │   └── tables/
+│       ├── cluster_profile_kmeans.csv
 │       ├── comparacion_kmeans_dbscan.csv
 │       ├── comparacion_silhouette_pca_tsne.csv
+│       ├── customer_features_summary.csv
+│       ├── dataset_summary.csv
+│       ├── null_summary.csv
 │       └── pca_loadings.csv
-├── .venv/
-├── requirements.txt
-└── README.md
+├── slides/
+└── src/
+    ├── __init__.py
+    ├── data/
+    │   └── __init__.py
+    ├── features/
+    │   └── __init__.py
+    ├── models/
+    │   └── __init__.py
+    └── visualization/
+        └── __init__.py
 ```
 
 ## Notebooks
